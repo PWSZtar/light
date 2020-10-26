@@ -2,8 +2,8 @@
 
 Projekt zakłada stworzenie aplikacji na system Android do zdalnego sterowania
 oświetleniem. Aplikacja będzie nawiązywała połączenie między telefonem a
-układem sterującym za pomocą technologii Bluetooth. Podstawową
-użytecznością aplikacji będzie włączanie i wyłączanie oświetlenia. Dodatkowo
+układem sterującym za pomocą technologii Bluetooth. W pierwszej iteracji projektu
+użytecznością aplikacji będzie włączanie i wyłączanie oświetlenia. W drugiej iteracji przewidywane jest by
 użytkownik będzie mógł wybrać konkretny kolor oświetlenia. Wszystkie
 ustawienia (takie jak stan oświetlenia lub preferowany kolor) będzie można
 zapisać w pamięci urządzenia i wykorzystać później.
