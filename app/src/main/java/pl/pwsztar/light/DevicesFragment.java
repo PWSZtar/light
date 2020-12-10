@@ -5,6 +5,8 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.ListFragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,9 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +29,7 @@ public class DevicesFragment extends ListFragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
+
     if(getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH))
       bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     listAdapter = new ArrayAdapter<BluetoothDevice>(getActivity(), 0, listItems) {
@@ -101,11 +101,13 @@ public class DevicesFragment extends ListFragment {
     listAdapter.notifyDataSetChanged();
   }
 
+  //go to termoinal fragment
   @Override
   public void onListItemClick(ListView l, View v, int position, long id) {
     BluetoothDevice device = listItems.get(position-1);
     Bundle args = new Bundle();
     args.putString("device", device.getAddress());
+    args.putString("deviceName", device.getName());
     Fragment fragment = new TerminalFragment();
     fragment.setArguments(args);
     getFragmentManager().beginTransaction().replace(R.id.fragment, fragment, "terminal").addToBackStack(null).commit();

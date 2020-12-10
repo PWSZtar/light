@@ -2,6 +2,7 @@ package pl.pwsztar.light;
 
 class Constants {
 
+
   // values have to be globally unique
   static final String INTENT_ACTION_DISCONNECT = BuildConfig.APPLICATION_ID + ".Disconnect";
   static final String NOTIFICATION_CHANNEL = BuildConfig.APPLICATION_ID + ".Channel";
