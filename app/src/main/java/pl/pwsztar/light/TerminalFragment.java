@@ -131,7 +131,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     //TODO create new activity on click
     bb1.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
-        Intent myIntent = new Intent(getActivity(), BasicFunction.class);
+        Intent myIntent = new Intent(getActivity(), BasicFunctionActivity.class);
         //myIntent.putExtra("key", value); //Optional parameters
         getActivity().startActivity(myIntent);
       }
