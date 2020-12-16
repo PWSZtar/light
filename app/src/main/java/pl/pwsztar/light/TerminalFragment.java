@@ -139,8 +139,8 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
         bb2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Nie ten przycisk", Toast.LENGTH_SHORT).show();
-                //send("Button2");
+                Toast.makeText(getContext(), "Komenda show(R0G100B0)", Toast.LENGTH_SHORT).show();
+                send("R0G100B0");
             }
         });
 
