@@ -7,7 +7,7 @@ android {
         minSdkVersion 18
         vectorDrawables.useSupportLibrary true
 
-        applicationId "de.kai_morich.simple_bluetooth_terminal"
+        applicationId "pl.pwsztar.light"
         versionCode 1
         versionName "1.0"
     }
@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 }

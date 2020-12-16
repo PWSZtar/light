@@ -1,9 +1,10 @@
 package pl.pwsztar.light;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,6 +28,29 @@ public class BasicFunctionActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+    Button btn1 = findViewById(R.id.btn_function_first);
+    Button btn2 = findViewById(R.id.btn_function_second);
+    Button btn3 = findViewById(R.id.btn_function_third);
+
+    btn1.setOnClickListener(view -> {
+      Intent returnIntent = new Intent();
+      returnIntent.putExtra("FUNCTION", "On");
+      setResult(Activity.RESULT_OK, returnIntent);
+      finish();
+    });
+    btn2.setOnClickListener(view -> {
+      Intent returnIntent = new Intent();
+      returnIntent.putExtra("FUNCTION", "Off");
+      setResult(Activity.RESULT_OK, returnIntent);
+      finish();
+    });
+    btn3.setOnClickListener(view -> {
+      Intent returnIntent = new Intent();
+      returnIntent.putExtra("FUNCTION", "R100G0B0");
+      setResult(Activity.RESULT_OK, returnIntent);
+      finish();
+    });
   }
 
   @Override
