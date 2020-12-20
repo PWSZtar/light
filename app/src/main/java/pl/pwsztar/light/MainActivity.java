@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
             getSupportFragmentManager().beginTransaction().add(R.id.fragment, new DevicesFragment(), "devices").commit();
         else
             onBackStackChanged();
+
+        status.reset();
     }
 
     @Override

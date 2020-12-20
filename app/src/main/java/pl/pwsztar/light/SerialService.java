@@ -150,7 +150,7 @@ public class SerialService extends Service implements SerialListener {
         PendingIntent restartPendingIntent = PendingIntent.getActivity(this, 1, restartIntent,  PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, Constants.NOTIFICATION_CHANNEL)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setColor(getResources().getColor(R.color.colorPrimary))
+                .setColor(getResources().getColor(R.color.Blue))
                 .setContentTitle(getResources().getString(R.string.app_name))
                 .setContentText(socket != null ? "Connected to "+socket.getName() : "Background Service")
                 .setContentIntent(restartPendingIntent)

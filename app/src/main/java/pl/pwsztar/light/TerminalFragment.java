@@ -2,6 +2,7 @@ package pl.pwsztar.light;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -32,14 +34,10 @@ import androidx.fragment.app.Fragment;
 public class TerminalFragment extends Fragment implements ServiceConnection, SerialListener {
 
     private enum Connected { False, Pending, True }
-
+    //public SerialService service;
     private String deviceAddress, deviceName;
-    private SerialService service;
-
     private Connected connected = Connected.False;
     private boolean initialStart = true;
-    private boolean hexEnabled = false;
-    private boolean pendingNewline = false;
     private String newline = TextUtil.newline_crlf;
 
     /*
@@ -65,16 +63,16 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     @Override
     public void onStart() {
         super.onStart();
-        if(service != null)
-            service.attach(this);
+        if(Constants.socket != null)
+            Constants.socket.attach(this);
         else
             getActivity().startService(new Intent(getActivity(), SerialService.class)); // prevents service destroy on unbind from recreated activity caused by orientation change
     }
 
     @Override
     public void onStop() {
-        if(service != null && !getActivity().isChangingConfigurations())
-            service.detach();
+        if(Constants.socket != null && !getActivity().isChangingConfigurations())
+            Constants.socket.detach();
         super.onStop();
     }
 
@@ -94,7 +92,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     @Override
     public void onResume() {
         super.onResume();
-        if(initialStart && service != null) {
+        if(initialStart && Constants.socket != null) {
             initialStart = false;
             getActivity().runOnUiThread(this::connect);
         }
@@ -102,8 +100,8 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     @Override
     public void onServiceConnected(ComponentName name, IBinder binder) {
-        service = ((SerialService.SerialBinder) binder).getService();
-        service.attach(this);
+        Constants.socket = ((SerialService.SerialBinder) binder).getService();
+        Constants.socket.attach(this);
         if(initialStart && isResumed()) {
             initialStart = false;
             getActivity().runOnUiThread(this::connect);
@@ -112,7 +110,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
-        service = null;
+        Constants.socket = null;
     }
 
     /*
@@ -130,7 +128,6 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             public void onClick(View v) {
                 int LAUNCH_SECOND_ACTIVITY = 1;
                 Intent myIntent = new Intent(getActivity(), BasicFunctionActivity.class);
-                //myIntent.putExtra("key", value); //Optional parameters
                 startActivityForResult(myIntent, LAUNCH_SECOND_ACTIVITY);
             }
         });
@@ -139,8 +136,9 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
         bb2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Komenda show(R0G100B0)", Toast.LENGTH_SHORT).show();
-                send("R0G100B0");
+                int LAUNCH_SECOND_ACTIVITY = 2;
+                Intent myIntent = new Intent(getActivity(), ColorFunctionActivity.class);
+                startActivityForResult(myIntent, LAUNCH_SECOND_ACTIVITY);
             }
         });
 
@@ -148,8 +146,9 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
         bb3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Nie ten przycisk", Toast.LENGTH_SHORT).show();
-                //send("Button3");
+                int LAUNCH_SECOND_ACTIVITY = 3;
+                Intent myIntent = new Intent(getActivity(), BrightFunctionActivity.class);
+                startActivityForResult(myIntent, LAUNCH_SECOND_ACTIVITY);
             }
         });
 
@@ -162,8 +161,8 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_terminal, menu);
-        menu.findItem(R.id.hex).setChecked(hexEnabled);
+        //inflater.inflate(R.menu.menu_terminal, menu);
+        //menu.findItem(R.id.hex).setChecked(hexEnabled);
     }
 
     /*
@@ -173,10 +172,11 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         try {
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-            status("connecting...");
+            //status("connecting...");
+            Toast.makeText(getActivity(), "Connecting", Toast.LENGTH_SHORT).show();
             connected = Connected.Pending;
             SerialSocket socket = new SerialSocket(getActivity().getApplicationContext(), device);
-            service.connect(socket);
+            Constants.socket.connect(socket);
         } catch (Exception e) {
             onSerialConnectError(e);
         }
@@ -184,10 +184,10 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     private void disconnect() {
         connected = Connected.False;
-        service.disconnect();
+        Constants.socket.disconnect();
     }
 
-    private void send(String str) {
+    public void send(String str) {
         if(connected != Connected.True) {
             Toast.makeText(getActivity(), "not connected", Toast.LENGTH_SHORT).show();
             return;
@@ -195,44 +195,23 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         try {
             String msg;
             byte[] data;
-            if(hexEnabled) {
-                StringBuilder sb = new StringBuilder();
-                TextUtil.toHexString(sb, TextUtil.fromHexString(str));
-                TextUtil.toHexString(sb, newline.getBytes());
-                msg = sb.toString();
-                data = TextUtil.fromHexString(msg);
-            } else {
-                msg = str;
-                data = (str + newline).getBytes();
-            }
-            SpannableStringBuilder spn = new SpannableStringBuilder(msg+'\n');
-            spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorSendText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            Log.i("TEST", spn.toString());
-            service.write(data);
+            msg = str;
+            data = (str + newline).getBytes();
+            Constants.socket.write(data);
         } catch (Exception e) {
             onSerialIoError(e);
         }
     }
 
     private void receive(byte[] data) {
-        if(hexEnabled) {
-            Log.i("TEST", TextUtil.toHexString(data) + '\n');
-        } else {
-            String msg = new String(data);
-            if(newline.equals(TextUtil.newline_crlf) && msg.length() > 0) {
-                // don't show CR as ^M if directly before LF
-                msg = msg.replace(TextUtil.newline_crlf, TextUtil.newline_lf);
-                // special handling if CR and LF come in separate fragments
-                pendingNewline = msg.charAt(msg.length() - 1) == '\r';
-            }
+        String msg = new String(data);
+        if(newline.equals(TextUtil.newline_crlf) && msg.length() > 0) {
+            // don't show CR as ^M if directly before LF
+            msg = msg.replace(TextUtil.newline_crlf, TextUtil.newline_lf);
+            // special handling if CR and LF come in separate fragments
+            //pendingNewline = msg.charAt(msg.length() - 1) == '\r';
             Log.i("TEST", TextUtil.toCaretString(msg, newline.length() != 0).toString());
         }
-    }
-
-    private void status(String str) {
-        SpannableStringBuilder spn = new SpannableStringBuilder(str+'\n');
-        spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorStatusText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        Log.i("TEST", spn.toString());
     }
 
     /*
@@ -240,13 +219,16 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
      */
     @Override
     public void onSerialConnect() {
-        status("connected");
+        //status("connected");
+        Toast.makeText(getActivity(), "Connected", Toast.LENGTH_SHORT).show();
+
         connected = Connected.True;
     }
 
     @Override
     public void onSerialConnectError(Exception e) {
-        status("connection failed: " + e.getMessage());
+        //status("connection failed: " + e.getMessage());
+        Toast.makeText(getActivity(), "Connection failed: \" + e.getMessage()", Toast.LENGTH_SHORT).show();
         disconnect();
     }
 
@@ -257,7 +239,8 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     @Override
     public void onSerialIoError(Exception e) {
-        status("connection lost: " + e.getMessage());
+        //status("connection lost: " + e.getMessage());
+        Toast.makeText(getActivity(), "connection lost: \" + e.getMessage()", Toast.LENGTH_SHORT).show();
         disconnect();
     }
 
@@ -278,5 +261,4 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             }
        // }
     }//
-
 }

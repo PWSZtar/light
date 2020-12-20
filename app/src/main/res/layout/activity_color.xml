@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/SoftWhite"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/SoftWhite"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,30 +26,58 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/ledtext"
-            android:layout_width="300dp"
+            android:id="@+id/t2"
+            android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="Led is Off"
+            android:text="Current color"
             android:textColor="@color/White"
-            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <Button
+            android:id="@+id/rect"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rect"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/t2"
             app:layout_constraintVertical_bias="0.05" />
 
         <Button
-            android:id="@+id/b"
+            android:id="@+id/set"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="on"
-            android:background="@color/Blue"
+            android:text="Set color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ledtext"
-            app:layout_constraintVertical_bias="0.025" />
+            app:layout_constraintTop_toBottomOf="@+id/rect"
+            app:layout_constraintVertical_bias="0.05"
+            android:background="@color/Blue" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/set"
+            app:layout_constraintVertical_bias="0.05"
+            android:background="@color/Blue" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

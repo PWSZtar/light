@@ -115,5 +115,4 @@ class SerialSocket implements Runnable {
             socket = null;
         }
     }
-
 }

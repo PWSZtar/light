@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@color/SoftBlue"
     <item
         android:id="@+id/bt_settings"
+        android:textColor="@color/White"
+        android:textSize="24dp"
+        android:background="@color/SoftBlue"
         android:title="Bluetooth settings" />
 </menu>
