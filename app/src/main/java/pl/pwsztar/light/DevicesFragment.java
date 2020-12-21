@@ -71,7 +71,7 @@ public class DevicesFragment extends ListFragment {
     if(bluetoothAdapter == null)
       setEmptyText("<bluetooth not supported>");
     else if(!bluetoothAdapter.isEnabled())
-      setEmptyText("<bluetooth is disabled>");
+      setEmptyText("<bluetooth is disabled>"); // TODO colorful button to enamble, first look problem
     else
       setEmptyText("<no bluetooth devices found>");
     refresh();
