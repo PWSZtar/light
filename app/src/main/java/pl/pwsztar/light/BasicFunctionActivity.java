@@ -31,8 +31,6 @@ public class BasicFunctionActivity extends AppCompatActivity {
     text = findViewById(R.id.ledtext);
     text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 
-
-
     button = findViewById(R.id.b);
     button.setOnClickListener(view -> {
     if(status.ledStatus)
@@ -68,7 +66,7 @@ public class BasicFunctionActivity extends AppCompatActivity {
       Constants.socket.write(data);
     }
     catch (Exception e) {
-      Toast.makeText(this.getApplicationContext(), "Nie ten przycisk", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this.getApplicationContext(), "Socket problem, function class", Toast.LENGTH_SHORT).show();
     }
   }
 

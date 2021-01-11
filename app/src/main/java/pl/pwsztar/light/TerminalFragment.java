@@ -228,7 +228,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     @Override
     public void onSerialConnectError(Exception e) {
         //status("connection failed: " + e.getMessage());
-        Toast.makeText(getActivity(), "Connection failed: \" + e.getMessage()", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Connection failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         disconnect();
     }
 
