@@ -24,4 +24,5 @@ Open source BT termianl:
 [BT_module](https://www.aliexpress.com/item/32786773297.html?spm=a2g0s.9042311.0.0.27424c4ds3v0eZ)
 
 ### References 
+- [Blog.plasticscm](http://blog.plasticscm.com)
 - [workBook](docs/plasticscm-book.pdf)
