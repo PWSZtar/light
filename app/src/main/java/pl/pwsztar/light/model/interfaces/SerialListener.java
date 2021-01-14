@@ -1,6 +1,6 @@
-package pl.pwsztar.light;
+package pl.pwsztar.light.model.interfaces;
 
-interface SerialListener {
+public interface SerialListener {
     void onSerialConnect      ();
     void onSerialConnectError (Exception e);
     void onSerialRead         (byte[] data);

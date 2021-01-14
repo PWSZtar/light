@@ -1,9 +1,12 @@
-package pl.pwsztar.light;
+package pl.pwsztar.light.views.main_view;
 
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import pl.pwsztar.light.R;
+import pl.pwsztar.light.model.LedStatus;
 
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
@@ -20,8 +23,6 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
             getSupportFragmentManager().beginTransaction().add(R.id.fragment, new DevicesFragment(), "devices").commit();
         else
             onBackStackChanged();
-
-        status.ledStatus = false;
     }
 
     @Override

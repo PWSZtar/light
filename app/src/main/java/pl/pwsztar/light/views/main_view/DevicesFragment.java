@@ -1,4 +1,4 @@
-package pl.pwsztar.light;
+package pl.pwsztar.light.views.main_view;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import pl.pwsztar.light.R;
 
 public class DevicesFragment extends ListFragment {
 

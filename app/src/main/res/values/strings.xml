@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Light App</string>
     <string name="devices">Bluetooth Devices</string>
+    <string name="save">Save</string>
+    <string name="led_off_on">Led Off/On</string>
+
+    <string name="off">Led Off</string>
+    <string name="on">Led On</string>
+    <string name="speed">Speed:</string>
+    <string name="delay">Delay:</string>
+    <string name="led_is_off">Led is off</string>
 </resources>

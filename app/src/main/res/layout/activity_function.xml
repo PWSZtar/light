@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     android:background="@color/SoftWhite"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,127 +19,108 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/text_led_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/led_is_off" />
+
+    <LinearLayout
+        android:id="@+id/box_option"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RadioGroup
             android:id="@+id/rg"
             android:layout_width="350dp"
             android:layout_height="204dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/White"
-            android:textSize="24dp"
-            app:layout_constraintVertical_bias="0.05">
+            android:textSize="24dp">
 
             <RadioButton
-                android:id="@+id/r1"
+                android:id="@+id/option_smooth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Smooth" />
 
             <RadioButton
-                android:id="@+id/r2"
+                android:id="@+id/option_fire_effect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Fire Efect" />
 
             <RadioButton
-                android:id="@+id/r3"
+                android:id="@+id/option_statrorsocpe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Stratoscope" />
 
             <RadioButton
-                android:id="@+id/r4"
+                android:id="@+id/option_blink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Blink" />
 
             <RadioButton
-                android:id="@+id/r5"
+                android:id="@+id/option_brightnes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Brightness"
-                android:checked="true"/>
+                android:checked="true"
+                android:text="Brightness" />
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="TextView"
-            android:textColor="@color/White"
-            android:textSize="24dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rg"
-            app:layout_constraintVertical_bias="0.05" />
+        <LinearLayout
+            android:id="@+id/box_delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <SeekBar
-            android:id="@+id/seekBar1"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:visibility="invisible"
-            android:max="100"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView1"
-            app:layout_constraintVertical_bias="0.05" />
+            <TextView
+                android:id="@+id/text_delay"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:text="@string/delay"
+                android:textColor="@color/White"
+                android:textSize="24dp" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="TextView"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar1"
-            app:layout_constraintVertical_bias="0.05"
-            android:textColor="@color/White"
-            android:textSize="24dp"/>
+            <SeekBar
+                android:id="@+id/seekbar_delay"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:max="100" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/box_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <SeekBar
-            android:id="@+id/seekBar2"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:visibility="invisible"
-            android:max="100"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.05"
-            android:textColor="@color/White"
-            android:textSize="24dp" />
+            <TextView
+                android:id="@+id/text_speed"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:text="@string/speed"
+                android:textColor="@color/White"
+                android:textSize="24sp" />
+
+            <SeekBar
+                android:id="@+id/seekbar_speed"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:max="100" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/fun"
+            android:id="@+id/btn_save"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:text="Set Funtion"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar2"
-            app:layout_constraintVertical_bias="0.1"
-            android:background="@color/Blue" />/>
+            android:background="@color/Blue"
+            android:text="@string/save" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -20,14 +20,17 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import pl.pwsztar.light.app.Constants;
+import pl.pwsztar.light.model.interfaces.SerialListener;
+
 /**
  * create notification and queue serial data while activity is not in the foreground
  * use listener chain: SerialSocket -> SerialService -> UI fragment
  */
 public class SerialService extends Service implements SerialListener {
 
-    class SerialBinder extends Binder {
-        SerialService getService() { return SerialService.this; }
+    public class SerialBinder extends Binder {
+        public SerialService getService() { return SerialService.this; }
     }
 
     private enum QueueType {Connect, ConnectError, Read, IoError}

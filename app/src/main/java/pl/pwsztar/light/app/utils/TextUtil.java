@@ -1,4 +1,4 @@
-package pl.pwsztar.light;
+package pl.pwsztar.light.app.utils;
 
 import android.text.Editable;
 import android.text.InputType;
@@ -12,12 +12,12 @@ import androidx.annotation.ColorInt;
 
 import java.io.ByteArrayOutputStream;
 
-final class TextUtil {
+public class TextUtil {
 
     @ColorInt static int caretBackground = 0xff666666;
 
-    final static String newline_crlf = "\r\n";
-    final static String newline_lf = "\n";
+    public static String newline_crlf = "\r\n";
+    public static String newline_lf = "\n";
 
     static byte[] fromHexString(final CharSequence s) {
         ByteArrayOutputStream buf = new ByteArrayOutputStream();
@@ -72,7 +72,7 @@ final class TextUtil {
     /**
      * use https://en.wikipedia.org/wiki/Caret_notation to avoid invisible control characters
      */
-    static CharSequence toCaretString(CharSequence s, boolean keepNewline) {
+    public static CharSequence toCaretString(CharSequence s, boolean keepNewline) {
         return toCaretString(s, keepNewline, s.length());
     }
 
