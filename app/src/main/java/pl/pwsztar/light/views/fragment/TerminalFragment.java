@@ -1,4 +1,4 @@
-package pl.pwsztar.light.views.main_view;
+package pl.pwsztar.light.views.fragment;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,19 +24,18 @@ import androidx.fragment.app.Fragment;
 import pl.pwsztar.light.R;
 import pl.pwsztar.light.model.LedStatus;
 import pl.pwsztar.light.model.interfaces.SerialListener;
-import pl.pwsztar.light.SerialService;
-import pl.pwsztar.light.SerialSocket;
+import pl.pwsztar.light.services.SerialService;
+import pl.pwsztar.light.services.SerialSocket;
 import pl.pwsztar.light.app.Constants;
 import pl.pwsztar.light.app.utils.TextUtil;
-import pl.pwsztar.light.views.basic_function_view.BasicFunctionActivity;
-import pl.pwsztar.light.views.bright_function_view.BrightFunctionActivity;
-import pl.pwsztar.light.views.color_function_view.ColorFunctionActivity;
+import pl.pwsztar.light.views.BasicFunctionActivity;
+import pl.pwsztar.light.views.BrightFunctionActivity;
+import pl.pwsztar.light.views.ColorFunctionActivity;
 
 public class TerminalFragment extends Fragment implements ServiceConnection, SerialListener {
 
   private enum Connected {False, Pending, True}
 
-  //public SerialService service;
   private String deviceAddress, deviceName;
   private Connected connected = Connected.False;
   private boolean initialStart = true;
@@ -132,29 +129,27 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_terminal, container, false);
 
-    //edited
-    final Button bb1 = view.findViewById(R.id.b1);
 
-    //TODO create new activity on click
-    bb1.setOnClickListener(v -> {
+    final Button btnOpenBasicFunction = view.findViewById(R.id.b1);
+    btnOpenBasicFunction.setOnClickListener(v -> {
       int LAUNCH_SECOND_ACTIVITY = 1;
       Intent intent = new Intent(getActivity(), BasicFunctionActivity.class);
       intent.putExtra("LED_STATUS", ledStatus);
       startActivityForResult(intent, LAUNCH_SECOND_ACTIVITY);
     });
 
-    final Button bb2 = view.findViewById(R.id.b2);
+    final Button btnOpenColorFunction = view.findViewById(R.id.b2);
 
-    bb2.setOnClickListener(v -> {
+    btnOpenColorFunction.setOnClickListener(v -> {
       int LAUNCH_SECOND_ACTIVITY = 2;
       Intent intent = new Intent(getActivity(), ColorFunctionActivity.class);
       intent.putExtra("LED_STATUS", ledStatus);
       startActivityForResult(intent, LAUNCH_SECOND_ACTIVITY);
     });
 
-    final Button bb3 = view.findViewById(R.id.b3);
+    final Button btnOpenBrightFunction = view.findViewById(R.id.b3);
 
-    bb3.setOnClickListener(v -> {
+    btnOpenBrightFunction.setOnClickListener(v -> {
       int LAUNCH_SECOND_ACTIVITY = 3;
       Intent intent = new Intent(getActivity(), BrightFunctionActivity.class);
       intent.putExtra("LED_STATUS", ledStatus);
@@ -176,7 +171,6 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     try {
       BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
       BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceAddress);
-      //status("connecting...");
       Toast.makeText(getActivity(), "Connecting", Toast.LENGTH_SHORT).show();
       connected = Connected.Pending;
       SerialSocket socket = new SerialSocket(getActivity().getApplicationContext(), device);
@@ -197,9 +191,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
       return;
     }
     try {
-      String msg;
       byte[] data;
-      msg = str;
       data = (str + newline).getBytes();
       Constants.socket.write(data);
     } catch (Exception e) {
@@ -223,7 +215,6 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
    */
   @Override
   public void onSerialConnect() {
-    //status("connected");
     Toast.makeText(getActivity(), "Connected", Toast.LENGTH_SHORT).show();
 
     connected = Connected.True;
@@ -231,7 +222,6 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
   @Override
   public void onSerialConnectError(Exception e) {
-    //status("connection failed: " + e.getMessage());
     Toast.makeText(getActivity(), "Connection failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
     disconnect();
   }
@@ -243,7 +233,6 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
   @Override
   public void onSerialIoError(Exception e) {
-    //status("connection lost: " + e.getMessage());
     Toast.makeText(getActivity(), "connection lost: \" + e.getMessage()", Toast.LENGTH_SHORT).show();
     disconnect();
   }
@@ -251,19 +240,14 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    Log.i("TEST", "activity result");
-    // TODO Dominik - Notka dla mnie - 1 ma być zamieniona - https://stackoverflow.com/questions/10407159/how-to-manage-startactivityforresult-on-android
-    //if (requestCode == 1) {
     if (resultCode == Activity.RESULT_OK) {
       String result = data.getStringExtra("FUNCTION");
       ledStatus = (LedStatus) data.getSerializableExtra("LED_STATUS");
-      Log.i("TEST", "TEST " + ledStatus.getLedStatus());
       Toast.makeText(getContext(), "Wiadomość zwrotna: " + result, Toast.LENGTH_SHORT).show();
       send(result);
     }
     if (resultCode == Activity.RESULT_CANCELED) {
-      Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-      //Write your code if there's no result
+      Toast.makeText(getContext(), "Selected nothing", Toast.LENGTH_SHORT).show();
     }
     // }
   }//

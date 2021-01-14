@@ -1,4 +1,4 @@
-package pl.pwsztar.light.views.basic_function_view;
+package pl.pwsztar.light.views;
 
 import android.content.Intent;
 import android.os.Bundle;

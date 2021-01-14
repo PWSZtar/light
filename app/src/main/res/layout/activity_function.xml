@@ -19,108 +19,114 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/text_led_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/led_is_off" />
-
     <LinearLayout
-        android:id="@+id/box_option"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/rg"
-            android:layout_width="350dp"
-            android:layout_height="204dp"
-            android:textSize="24dp">
-
-            <RadioButton
-                android:id="@+id/option_smooth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Smooth" />
-
-            <RadioButton
-                android:id="@+id/option_fire_effect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fire Efect" />
-
-            <RadioButton
-                android:id="@+id/option_statrorsocpe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Stratoscope" />
-
-            <RadioButton
-                android:id="@+id/option_blink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Blink" />
-
-            <RadioButton
-                android:id="@+id/option_brightnes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Brightness" />
-        </RadioGroup>
-
-        <LinearLayout
-            android:id="@+id/box_delay"
+        <TextView
+            android:id="@+id/text_led_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/led_is_off" />
+
+        <LinearLayout
+            android:id="@+id/box_option"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:id="@+id/text_delay"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:text="@string/delay"
-                android:textColor="@color/White"
-                android:textSize="24dp" />
+            <RadioGroup
+                android:id="@+id/rg"
+                android:layout_width="350dp"
+                android:layout_height="204dp"
+                android:textSize="24sp">
 
-            <SeekBar
-                android:id="@+id/seekbar_delay"
+                <RadioButton
+                    android:id="@+id/option_smooth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/smooth" />
+
+                <RadioButton
+                    android:id="@+id/option_fire_effect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fire_efect" />
+
+                <RadioButton
+                    android:id="@+id/option_statrorsocpe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stratoscope" />
+
+                <RadioButton
+                    android:id="@+id/option_blink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/blink" />
+
+                <RadioButton
+                    android:id="@+id/option_brightnes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/brightness" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/box_delay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/text_delay"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:text="@string/delay"
+                    android:textColor="@color/White"
+                    android:textSize="24sp" />
+
+                <SeekBar
+                    android:id="@+id/seekbar_delay"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:max="100" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/box_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/text_speed"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:text="@string/speed"
+                    android:textColor="@color/White"
+                    android:textSize="24sp" />
+
+                <SeekBar
+                    android:id="@+id/seekbar_speed"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:max="100" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:max="100" />
+                android:background="@color/Blue"
+                android:text="@string/save" />
+
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/box_speed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/text_speed"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:text="@string/speed"
-                android:textColor="@color/White"
-                android:textSize="24sp" />
-
-            <SeekBar
-                android:id="@+id/seekbar_speed"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:max="100" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:background="@color/Blue"
-            android:text="@string/save" />
-
     </LinearLayout>
-
 </LinearLayout>

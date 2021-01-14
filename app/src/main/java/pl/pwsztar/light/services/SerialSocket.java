@@ -1,4 +1,4 @@
-package pl.pwsztar.light;
+package pl.pwsztar.light.services;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;

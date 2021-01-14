@@ -1,7 +1,7 @@
 package pl.pwsztar.light.app;
 
 import pl.pwsztar.light.BuildConfig;
-import pl.pwsztar.light.SerialService;
+import pl.pwsztar.light.services.SerialService;
 
 public class Constants {
 

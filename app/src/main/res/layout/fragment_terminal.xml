@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/SoftWhite"
-    tools:context=".views.main_view.MainActivity">
+    tools:context=".views.MainActivity">
 
     <TextView
         android:id="@+id/name"
@@ -41,7 +41,7 @@
         android:id="@+id/b1"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="Basic"
+        android:text="@string/basic"
         android:background="@color/Blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:id="@+id/b2"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="Color"
+        android:text="@string/color"
         android:background="@color/Blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         android:id="@+id/b3"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="Brightnes"
+        android:text="@string/brightnes"
         android:background="@color/Blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

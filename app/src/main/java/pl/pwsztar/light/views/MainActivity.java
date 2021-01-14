@@ -1,4 +1,4 @@
-package pl.pwsztar.light.views.main_view;
+package pl.pwsztar.light.views;
 
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import pl.pwsztar.light.R;
-import pl.pwsztar.light.model.LedStatus;
+import pl.pwsztar.light.views.fragment.DevicesFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 

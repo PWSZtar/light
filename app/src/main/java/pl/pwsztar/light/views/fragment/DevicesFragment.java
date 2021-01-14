@@ -1,4 +1,4 @@
-package pl.pwsztar.light.views.main_view;
+package pl.pwsztar.light.views.fragment;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;

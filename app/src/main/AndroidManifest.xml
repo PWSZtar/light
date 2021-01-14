@@ -12,11 +12,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".views.basic_function_view.BasicFunctionActivity" />
-        <activity android:name=".views.color_function_view.ColorFunctionActivity" />
-        <activity android:name=".views.bright_function_view.BrightFunctionActivity"/>
+        <activity android:name=".views.BasicFunctionActivity" />
+        <activity android:name=".views.ColorFunctionActivity" />
+        <activity android:name=".views.BrightFunctionActivity"/>
         <activity
-            android:name=".views.main_view.MainActivity"
+            android:name=".views.MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".SerialService" />
+        <service android:name=".services.SerialService" />
     </application>
 
 </manifest>

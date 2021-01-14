@@ -9,4 +9,13 @@
     <string name="speed">Speed:</string>
     <string name="delay">Delay:</string>
     <string name="led_is_off">Led is off</string>
+    <string name="smooth">Smooth</string>
+    <string name="fire_efect">Fire Efect</string>
+    <string name="stratoscope">Stratoscope</string>
+    <string name="blink">Blink</string>
+    <string name="brightness">Brightness</string>
+    <string name="color">Color</string>
+    <string name="brightnes">Brightnes</string>
+    <string name="basic">Basic</string>
+    <string name="save_color">Save color</string>
 </resources>

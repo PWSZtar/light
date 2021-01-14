@@ -24,6 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_height="match_parent">
 
         <TextView
@@ -35,7 +36,7 @@
             android:textColor="@color/White" />
 
         <Button
-            android:id="@+id/rect"
+            android:id="@+id/color_holder"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:background="@drawable/rect"
@@ -43,16 +44,10 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/set"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:text="Set color" />
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:text="Save" />
+            android:id="@+id/btn_save_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_color"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -62,35 +57,18 @@
             android:textSize="24dp"
             android:textColor="@color/White" />
 
-        <Button
-            android:id="@+id/btn_color_red"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/rect" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grid_colors"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="2"/>
 
         <Button
-            android:id="@+id/btn_color_green"
-            android:layout_width="100dp"
+            android:id="@+id/btn_save"
+            android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/rect" />
+            android:text="Save" />
 
-        <Button
-            android:id="@+id/btn_color_blue"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/rect"/>
-
-        <Button
-            android:id="@+id/btn_color_orange"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/rect" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package pl.pwsztar.light;
+package pl.pwsztar.light.services;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import pl.pwsztar.light.R;
 import pl.pwsztar.light.app.Constants;
 import pl.pwsztar.light.model.interfaces.SerialListener;
 

@@ -1,4 +1,4 @@
-package pl.pwsztar.light.views.bright_function_view;
+package pl.pwsztar.light.views;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
