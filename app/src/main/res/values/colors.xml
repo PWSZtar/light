@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="White">#ffffff</color>
+    <color name="SoftWhite">#cadeef</color>
+    <color name="SoftBlue">#9bd4e4</color>
+    <color name="Blue">#39ace7</color>
+    <color name="HardBlue">#0784b5</color>
+
+    <color name="colorRecieveText">#00FF00</color>
+    <color name="colorSendText">#82CAFF</color>
+    <color name="colorStatusText">#FFDB58</color>
+</resources>
