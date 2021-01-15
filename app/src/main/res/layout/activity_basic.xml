@@ -49,6 +49,6 @@
             android:layout_height="wrap_content"
             android:background="@color/Blue"
 
-            android:text="@string/save" />
+            android:text="@string/set_color" />
     </LinearLayout>
 </LinearLayout>

@@ -18,4 +18,6 @@
     <string name="brightnes">Brightnes</string>
     <string name="basic">Basic</string>
     <string name="save_color">Save color</string>
+    <string name="set_color">Set color</string>
+
 </resources>
