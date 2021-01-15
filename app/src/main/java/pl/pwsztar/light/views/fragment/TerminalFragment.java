@@ -39,7 +39,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
   private String deviceAddress, deviceName;
   private Connected connected = Connected.False;
   private boolean initialStart = true;
-  private String newline = TextUtil.newline_crlf;
+  private String newline = TextUtil.newline_lf;
 
   private LedStatus ledStatus;
 
@@ -201,9 +201,9 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
   private void receive(byte[] data) {
     String msg = new String(data);
-    if (newline.equals(TextUtil.newline_crlf) && msg.length() > 0) {
+    if (newline.equals(TextUtil.newline_lf) && msg.length() > 0) {
       // don't show CR as ^M if directly before LF
-      msg = msg.replace(TextUtil.newline_crlf, TextUtil.newline_lf);
+      msg = msg.replace(TextUtil.newline_lf, TextUtil.newline_lf);
       // special handling if CR and LF come in separate fragments
       //pendingNewline = msg.charAt(msg.length() - 1) == '\r';
       Log.i("TEST", TextUtil.toCaretString(msg, newline.length() != 0).toString());
@@ -233,7 +233,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
   @Override
   public void onSerialIoError(Exception e) {
-    Toast.makeText(getActivity(), "connection lost: \" + e.getMessage()", Toast.LENGTH_SHORT).show();
+    Toast.makeText(getActivity(), "connection lost:"  + e.getMessage(), Toast.LENGTH_SHORT).show();
     disconnect();
   }
 

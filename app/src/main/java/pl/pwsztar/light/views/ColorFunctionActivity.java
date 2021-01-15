@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
-import com.softarea.tarbus.ui.main.adapter.GridColorsAdapter;
+//import com.softarea.tarbus.ui.main.adapter.GridColorsAdapter;
+
 
 import pl.pwsztar.light.R;
 import pl.pwsztar.light.model.FunctionActivityModel;
 import pl.pwsztar.light.model.LedStatus;
 import pl.pwsztar.light.model.LightColor;
+import pl.pwsztar.light.views.adapters.GridColorsAdapter;
 
 public class ColorFunctionActivity extends FunctionActivityModel {
   private Button colorHolder, btnSave;

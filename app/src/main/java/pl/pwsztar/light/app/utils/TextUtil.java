@@ -16,7 +16,6 @@ public class TextUtil {
 
     @ColorInt static int caretBackground = 0xff666666;
 
-    public static String newline_crlf = "\r\n";
     public static String newline_lf = "\n";
 
     public static CharSequence toCaretString(CharSequence s, boolean keepNewline) {

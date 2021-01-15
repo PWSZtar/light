@@ -47,6 +47,8 @@
             android:id="@+id/btn_save_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/Blue"
+
             android:text="@string/save_color"/>
 
         <TextView
@@ -67,6 +69,8 @@
             android:id="@+id/btn_save"
             android:layout_width="200dp"
             android:layout_height="50dp"
+            android:background="@color/Blue"
+
             android:text="Save" />
 
     </LinearLayout>

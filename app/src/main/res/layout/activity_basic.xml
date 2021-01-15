@@ -47,6 +47,8 @@
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/Blue"
+
             android:text="@string/save" />
     </LinearLayout>
 </LinearLayout>

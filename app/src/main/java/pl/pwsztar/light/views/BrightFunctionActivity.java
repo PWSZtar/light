@@ -66,7 +66,7 @@ public class BrightFunctionActivity extends FunctionActivityModel {
     radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
       RadioButton r = findViewById(checkedId);
       if (checkedId == R.id.option_blink) {
-        boxSpeed.setVisibility(View.GONE);
+        boxSpeed.setVisibility(View.VISIBLE);
         boxDelay.setVisibility(View.VISIBLE);
       } else {
         boxSpeed.setVisibility(View.VISIBLE);
