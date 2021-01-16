@@ -4,7 +4,9 @@
     <color name="SoftWhite">#cadeef</color>
     <color name="SoftBlue">#9bd4e4</color>
     <color name="Blue">#39ace7</color>
-    <color name="HardBlue">#0784b5</color>
+    <color name="HardBlue">#0783B3</color>
+    <color name="MyBlue">#129AD8</color>
+    <color name="background">#1B1B1D</color>
 
     <color name="colorRecieveText">#00FF00</color>
     <color name="colorSendText">#82CAFF</color>

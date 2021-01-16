@@ -5,6 +5,6 @@
         android:id="@+id/bt_settings"
         android:textColor="@color/White"
         android:textSize="24dp"
-        android:background="@color/SoftBlue"
+        android:background="@color/background"
         android:title="Bluetooth settings" />
 </menu>
